@@ -9,7 +9,7 @@ Angular 22 · standalone components · signals · zoneless · uma única depend�
 
 ---
 
-## Antes de publicar
+## Antes de publicar_
 
 Tudo o que muda de cliente para cliente está em **`src/app/core/config.ts`**:
 
