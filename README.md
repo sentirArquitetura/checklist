@@ -181,7 +181,7 @@ sinais a pessoa marcou, então o primeiro contato começa com o diagnóstico na 
 **Cores.** Coral `#F59494` e menta `#89C4C4` são as duas cores da marca. As dez cores dos
 canais saem da mesma família pastel do logotipo — coral e menta são dois dos dez canais
 (Identidade e Ar), e os outros oito acompanham a mesma saturação. Os tokens ficam todos no
-`:root` de `src/styles.css`.
+`:root` de `src/styles.css`. 
 
 **Tipografia.** Instrument Serif no display, com o itálico reservado para a palavra em
 destaque de cada título — é o mesmo gesto do "Arquitetura" manuscrito do logotipo. Outfit
