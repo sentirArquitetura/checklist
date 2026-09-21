@@ -198,4 +198,4 @@ o lead e as marcações ficam no navegador.
 
 Foco visível no teclado, alvos de toque grandes, `aria-checked` nos sinais, contagem com
 `aria-live`, link para pular ao conteúdo e `prefers-reduced-motion` respeitado em todas as
-animações.
+animações.  
