@@ -1,0 +1,13 @@
+<div class="barra" [class.barra--visivel]="visivel()" [attr.aria-hidden]="!visivel()">
+  <p class="barra__contagem" aria-live="polite">
+    <strong>{{ funil.total() }}</strong> de 10 sinais marcados
+  </p>
+
+  @if (resultadoNaTela()) {
+    <a class="botao botao--coral barra__acao" [href]="link()" target="_blank" rel="noopener">
+      Falar com a Sentir
+    </a>
+  } @else {
+    <button type="button" class="botao barra__acao" (click)="verResultado()">Ver resultado</button>
+  }
+</div>

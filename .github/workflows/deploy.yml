@@ -1,0 +1,52 @@
+# Publica a landing page no GitHub Pages a cada push na branch principal.
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # O site fica em https://<usuario>.github.io/<repositorio>/,
+      # então o base-href precisa apontar para a subpasta do repositório.
+      - name: Build
+        run: npx ng build --base-href "/${{ github.event.repository.name }}/"
+
+      # SPA no Pages: qualquer rota cai no index.html.
+      - name: Fallback de rotas
+        run: cp dist/sentir-landing/browser/index.html dist/sentir-landing/browser/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/sentir-landing/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

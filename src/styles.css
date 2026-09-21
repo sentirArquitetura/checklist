@@ -1,0 +1,304 @@
+/* ==========================================================================
+   Sentir Arquitetura — landing de captação
+   Identidade: coral #F59494 e menta #89C4C4, as duas cores da marca, sobre
+   papel quente e carvão. A cor solta da página é o espectro dos dez canais
+   sensoriais, derivado da mesma família pastel do logotipo.
+   ========================================================================== */
+
+:root {
+  /* Marca */
+  --coral: #f59494;
+  --coral-forte: #d96a6a;
+  --coral-suave: #fbdcda;
+  --menta: #89c4c4;
+  --menta-clara: #bce1d8;
+  --menta-suave: #e4f1ee;
+
+  /* Superfícies */
+  --papel: #fdfbfa;
+  --areia: #f7f0ed;
+  --nuvem: #eaf3f1;
+  --carvao: #26242a;
+  --carvao-alto: #322f37;
+
+  /* Texto */
+  --tinta: #2e2c2f;
+  --tinta-suave: #6b6669;
+  --claro: #fdfbfa;
+  --claro-suave: rgba(253, 251, 250, 0.68);
+
+  /* Traços */
+  --linha: rgba(46, 44, 47, 0.12);
+  --linha-clara: rgba(253, 251, 250, 0.2);
+
+  /* Tipografia */
+  --display: 'Instrument Serif', Georgia, serif;
+  --corpo: 'Outfit', system-ui, -apple-system, sans-serif;
+  --mono: 'DM Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Ritmo */
+  --margem: clamp(1.25rem, 5vw, 5.5rem);
+  --respiro: clamp(4rem, 10vw, 8.5rem);
+  --limite: 78rem;
+
+  --curva: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--corpo);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
+  font-weight: 350;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--coral-forte);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Tipografia ----------------------------------------------------------
+   Instrument Serif é uma fonte de display: peso único, muito contraste.
+   Aparece grande ou não aparece. O itálico ecoa a assinatura do logotipo.
+   -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.04;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.35rem, 1.15rem + 4.8vw, 4.6rem);
+  line-height: 0.98;
+}
+
+h2 {
+  font-size: clamp(1.95rem, 1.15rem + 3.2vw, 3.4rem);
+}
+
+h3 {
+  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem);
+}
+
+/* Palavra em destaque: itálico coral, como o "Arquitetura" da marca. */
+.grifo {
+  font-style: italic;
+  color: var(--coral-forte);
+}
+
+.grifo--claro {
+  color: var(--coral);
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* Etiqueta técnica: usada só onde nomeia alguma coisa de verdade. */
+.rotulo {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  margin: 0;
+}
+
+.rotulo--claro {
+  color: var(--claro-suave);
+}
+
+.conduz {
+  font-size: clamp(1.02rem, 0.98rem + 0.4vw, 1.22rem);
+  line-height: 1.6;
+  color: var(--tinta-suave);
+  max-width: 46ch;
+}
+
+.conduz--claro {
+  color: var(--claro-suave);
+}
+
+/* --- Estrutura ----------------------------------------------------------- */
+
+.secao {
+  padding: var(--respiro) var(--margem);
+}
+
+.secao__interno {
+  max-width: var(--limite);
+  margin-inline: auto;
+}
+
+.secao--escura {
+  background: var(--carvao);
+  color: var(--claro);
+}
+
+.secao--menta {
+  background: var(--nuvem);
+}
+
+.secao--areia {
+  background: var(--areia);
+}
+
+.secao--coral {
+  background: var(--coral);
+  color: var(--carvao);
+}
+
+/* --- Botões -------------------------------------------------------------- */
+
+.botao {
+  --fundo: var(--carvao);
+  --frente: var(--papel);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 3.5rem;
+  padding: 0 1.85rem;
+  background: var(--fundo);
+  color: var(--frente);
+  border: 1px solid var(--fundo);
+  border-radius: 999px;
+  font-family: var(--corpo);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--curva),
+    filter 0.25s var(--curva),
+    background-color 0.25s var(--curva);
+}
+
+.botao:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+.botao:disabled {
+  opacity: 0.5;
+  cursor: progress;
+  transform: none;
+}
+
+.botao--claro {
+  --fundo: var(--papel);
+  --frente: var(--carvao);
+}
+
+.botao--coral {
+  --fundo: var(--coral);
+  --frente: var(--carvao);
+}
+
+.botao--menta {
+  --fundo: var(--menta);
+  --frente: var(--carvao);
+}
+
+.botao--contorno {
+  --fundo: transparent;
+  --frente: currentColor;
+  border-color: currentColor;
+}
+
+.botao--contorno:hover {
+  background: rgba(253, 251, 250, 0.1);
+}
+
+.botao svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
+  flex: none;
+}
+
+/* --- Reveal -------------------------------------------------------------- */
+
+.revelar {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--curva),
+    transform 0.7s var(--curva);
+}
+
+.revelar.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Acessibilidade ------------------------------------------------------ */
+
+.pular {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--carvao);
+  color: var(--claro);
+  padding: 0.85rem 1.25rem;
+  text-decoration: none;
+}
+
+.pular:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .revelar {
+    opacity: 1;
+    transform: none;
+  }
+}

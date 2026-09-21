@@ -1,0 +1,17 @@
+<figure class="mapa">
+  <figcaption class="mapa__cabecalho">
+    <p class="rotulo">Corte sensorial</p>
+    <p class="mapa__contagem" aria-live="polite">
+      <strong>{{ funil.total() }}</strong> de 10 sinais
+    </p>
+  </figcaption>
+
+  <ul class="mapa__lista">
+    @for (canal of canais; track canal.id) {
+      <li class="mapa__faixa" [class.mapa__faixa--ativa]="funil.marcado(canal.id)" [style.--cor]="canal.cor">
+        <span class="mapa__nome">{{ canal.nome }}</span>
+        <span class="mapa__trilho"><span class="mapa__preenchimento"></span></span>
+      </li>
+    }
+  </ul>
+</figure>

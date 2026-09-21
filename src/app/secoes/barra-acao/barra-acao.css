@@ -1,0 +1,62 @@
+.barra {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem clamp(1rem, 4vw, 2rem);
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  background: rgba(38, 36, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--linha-clara);
+  color: var(--claro);
+  transform: translateY(110%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform 0.35s var(--curva),
+    opacity 0.35s var(--curva),
+    visibility 0.35s;
+}
+
+.barra--visivel {
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+}
+
+.barra__contagem {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--claro-suave);
+}
+
+.barra__contagem strong {
+  font-size: 1.1rem;
+  color: var(--claro);
+}
+
+.barra__acao {
+  min-height: 2.9rem;
+  padding: 0 1.35rem;
+  font-size: 0.92rem;
+  flex: none;
+}
+
+.barra .botao:not(.botao--coral) {
+  --fundo: var(--papel);
+  --frente: var(--carvao);
+}
+
+@media (max-width: 420px) {
+  .barra__contagem {
+    font-size: 0.7rem;
+    max-width: 8.5rem;
+    line-height: 1.3;
+  }
+}

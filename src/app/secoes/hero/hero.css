@@ -1,0 +1,138 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(1.75rem, 5vw, 3rem);
+  min-height: 100svh;
+  padding: clamp(2rem, 5vw, 3.25rem) var(--margem) clamp(1.5rem, 4vw, 3rem);
+  background: var(--papel);
+  color: var(--tinta);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Duas manchas muito suaves nas cores da marca, como luz atravessando o ambiente. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(58% 42% at 88% 8%, rgba(137, 196, 196, 0.32), transparent 68%),
+    radial-gradient(42% 34% at 2% 74%, rgba(245, 148, 148, 0.16), transparent 72%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero__conteudo {
+  position: relative;
+  max-width: var(--limite);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.hero__logo {
+  width: clamp(124px, 13vw, 158px);
+  height: auto;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.hero__rotulo {
+  color: var(--tinta-suave);
+}
+
+.hero__titulo {
+  margin-top: 0.85rem;
+  max-width: 15ch;
+}
+
+.hero__sub {
+  margin-top: 1.25rem;
+}
+
+.hero__acao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.5rem;
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.hero__nota {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--tinta-suave);
+  letter-spacing: 0.02em;
+}
+
+/* --- Espectro sensorial -------------------------------------------------- */
+
+.espectro {
+  position: relative;
+  margin: 0;
+  max-width: var(--limite);
+  width: 100%;
+  margin-inline: auto;
+}
+
+.espectro__faixa {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  align-items: end;
+  gap: clamp(0.35rem, 1.2vw, 0.9rem);
+  height: clamp(58px, 11vh, 120px);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--linha);
+}
+
+.espectro__coluna {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 0.55rem;
+}
+
+.espectro__barra {
+  display: block;
+  height: var(--altura);
+  background: var(--cor);
+  border-radius: 3px 3px 0 0;
+  transform-origin: bottom;
+  animation: subir 0.9s var(--curva) backwards;
+  animation-delay: calc(120ms + var(--ordem) * 70ms);
+}
+
+.espectro__nome {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  white-space: nowrap;
+}
+
+.espectro__legenda {
+  margin-top: 0.75rem;
+  font-size: 0.66rem;
+}
+
+@keyframes subir {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .espectro__nome {
+    display: none;
+  }
+
+  .espectro__faixa {
+    gap: 0.3rem;
+  }
+}

@@ -1,0 +1,7 @@
+Coloque aqui as fotos reais de projetos corporativos da Sentir.
+
+Arquivos esperados pela página:
+  projeto-sentir.jpg   -> imagem da seção "A Sentir Arquitetura" (proporção 4:3, ~1600px de largura)
+  og-sentir.jpg        -> imagem de compartilhamento no WhatsApp/Instagram (1200x630)
+
+Enquanto os arquivos não existirem, a página mostra uma moldura vazia no lugar da foto.

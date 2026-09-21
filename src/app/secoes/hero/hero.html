@@ -1,0 +1,48 @@
+<section class="hero" id="topo">
+  <div class="hero__conteudo">
+        <img
+        class="hero__logo"
+        src="imagens/logo-sentir.png"
+        alt="Sentir Arquitetura"
+        width="149"
+        height="71"
+        />
+    <p class="rotulo hero__rotulo">Neuroarquitetura corporativa</p>
+
+    <h1 class="hero__titulo">
+      10 sinais de que seu escritório pode estar
+      <span class="grifo">limitando o desempenho</span> da sua empresa
+    </h1>
+
+    <p class="conduz hero__sub">
+      Descubra se o ambiente atual acompanha as necessidades do seu negócio ou se está criando
+      barreiras para produtividade, colaboração e percepção de valor.
+    </p>
+
+    <div class="hero__acao">
+      <button type="button" class="botao botao--coral" (click)="ir('captura')">
+        Receber checklist gratuito
+      </button>
+      <p class="hero__nota">Dois minutos. Resultado na hora e o PDF no seu e-mail.</p>
+    </div>
+  </div>
+
+  <figure class="espectro" aria-hidden="true">
+    <div class="espectro__faixa">
+      @for (canal of canais; track canal.id) {
+        <div
+          class="espectro__coluna"
+          [style.--cor]="canal.cor"
+          [style.--altura.%]="canal.altura"
+          [style.--ordem]="$index"
+        >
+          <span class="espectro__barra"></span>
+          <span class="espectro__nome">{{ canal.nome }}</span>
+        </div>
+      }
+    </div>
+    <figcaption class="rotulo espectro__legenda">
+      Dez canais sensoriais que definem a experiência de um escritório
+    </figcaption>
+  </figure>
+</section>

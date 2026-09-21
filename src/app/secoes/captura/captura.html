@@ -1,0 +1,82 @@
+<section class="secao secao--menta" id="captura">
+  <div class="secao__interno captura">
+    <header class="captura__abertura" appRevelar>
+      <p class="rotulo">Etapa 1 de 2 · Seus dados</p>
+      <h2>Receba gratuitamente o checklist completo</h2>
+      <p class="conduz">
+        Preencha para abrir as dez perguntas. Usamos seus dados para enviar o material e falar
+        sobre projetos corporativos — nada além disso.
+      </p>
+    </header>
+
+    @if (funil.liberado()) {
+      <div class="captura__pronto" appRevelar>
+        <p class="rotulo">Checklist liberado</p>
+        <h3>Tudo certo, {{ funil.lead()?.nome }}. O checklist está aberto logo abaixo.</h3>
+        <button type="button" class="botao botao--coral" (click)="ir('diagnostico')">Ir para o checklist</button>
+      </div>
+    } @else {
+      <form class="formulario" [formGroup]="formulario" (ngSubmit)="enviar()" appRevelar novalidate>
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" formControlName="nome" autocomplete="name" />
+          @if (invalido('nome')) {
+            <p class="campo__erro">Informe seu nome.</p>
+          }
+        </div>
+
+        <div class="campo">
+          <label for="empresa">Empresa</label>
+          <input id="empresa" type="text" formControlName="empresa" autocomplete="organization" />
+          @if (invalido('empresa')) {
+            <p class="campo__erro">Informe o nome da empresa.</p>
+          }
+        </div>
+
+        <div class="campo">
+          <label for="cargo">Cargo</label>
+          <input id="cargo" type="text" formControlName="cargo" autocomplete="organization-title" />
+          @if (invalido('cargo')) {
+            <p class="campo__erro">Informe seu cargo.</p>
+          }
+        </div>
+
+        <div class="campo">
+          <label for="whatsapp">WhatsApp</label>
+          <input
+            id="whatsapp"
+            type="tel"
+            inputmode="numeric"
+            placeholder="(21) 99999-9999"
+            formControlName="whatsapp"
+            autocomplete="tel-national"
+            (input)="formatarWhatsapp($event)"
+          />
+          @if (invalido('whatsapp')) {
+            <p class="campo__erro">Informe um WhatsApp com DDD.</p>
+          }
+        </div>
+
+        <div class="campo campo--largo">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" formControlName="email" autocomplete="email" />
+          @if (invalido('email')) {
+            <p class="campo__erro">Informe um e-mail válido, como nome&#64;empresa.com.br.</p>
+          }
+        </div>
+
+        <div class="formulario__rodape">
+          <button type="submit" class="botao botao--coral botao--largo" [disabled]="funil.enviando()">
+            {{ funil.enviando() ? 'Enviando…' : 'Acessar checklist' }}
+          </button>
+          <p class="formulario__aviso">
+            Seus dados ficam com a Sentir Arquitetura. Nada de disparo em massa.
+          </p>
+          @if (funil.erroEnvio(); as erro) {
+            <p class="formulario__falha" role="alert">{{ erro }}</p>
+          }
+        </div>
+      </form>
+    }
+  </div>
+</section>

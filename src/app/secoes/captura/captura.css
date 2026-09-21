@@ -1,0 +1,117 @@
+.captura {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .captura {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    gap: clamp(3rem, 7vw, 6rem);
+  }
+}
+
+.captura__abertura h2 {
+  margin-top: 1.1rem;
+}
+
+.captura__abertura .conduz {
+  margin-top: 1.25rem;
+}
+
+.captura__pronto {
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+}
+
+.captura__pronto h3 {
+  margin: 0.9rem 0 1.5rem;
+}
+
+/* --- Formulário ---------------------------------------------------------- */
+
+.formulario {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 1.1rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+}
+
+@media (max-width: 560px) {
+  .formulario {
+    grid-template-columns: 1fr;
+  }
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.campo--largo,
+.formulario__rodape {
+  grid-column: 1 / -1;
+}
+
+.campo label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.campo input {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0 0.95rem;
+  font: inherit;
+  color: var(--tinta);
+  background: var(--areia);
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  transition: border-color 0.2s var(--curva);
+}
+
+.campo input:hover {
+  border-color: rgba(46, 44, 47, 0.3);
+}
+
+.campo input:focus-visible {
+  outline: none;
+  border-color: var(--menta);
+  box-shadow: 0 0 0 3px rgba(137, 196, 196, 0.35);
+}
+
+.campo__erro {
+  font-size: 0.82rem;
+  color: var(--coral-forte);
+}
+
+.formulario__rodape {
+  margin-top: 0.5rem;
+}
+
+.formulario__aviso {
+  margin-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+  text-align: center;
+}
+
+.formulario__falha {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--coral-forte);
+  text-align: center;
+}

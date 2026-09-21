@@ -1,0 +1,47 @@
+.rodape {
+  padding: clamp(2rem, 5vw, 3rem) var(--margem) calc(clamp(2rem, 5vw, 3rem) + 4.5rem);
+  background: var(--areia);
+  color: var(--tinta-suave);
+  border-top: 1px solid var(--linha);
+}
+
+.rodape__interno {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  max-width: var(--limite);
+  margin-inline: auto;
+}
+
+.rodape__marca {
+  width: 128px;
+  height: auto;
+}
+
+.rodape__links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.rodape__links a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  text-decoration: none;
+  border-bottom: 1px solid var(--linha);
+  padding-bottom: 2px;
+}
+
+.rodape__links a:hover {
+  color: var(--coral-forte);
+}
+
+.rodape__nota {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}

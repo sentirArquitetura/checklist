@@ -1,0 +1,134 @@
+<section class="secao secao--areia" id="diagnostico">
+  <div class="secao__interno">
+    <header class="diagnostico__abertura" appRevelar>
+      <p class="rotulo">Etapa 2 de 2 · Checklist</p>
+      <h2>10 sinais de que sua empresa precisa de um novo projeto corporativo</h2>
+      <p class="conduz">
+        Marque o que acontece hoje no seu escritório. O corte sensorial se monta conforme você
+        responde.
+      </p>
+    </header>
+
+    @if (!funil.liberado()) {
+      <div class="bloqueio" appRevelar>
+        <p class="rotulo">Checklist ainda fechado</p>
+        <h3>Preencha seus dados para abrir as dez perguntas.</h3>
+        <button type="button" class="botao botao--coral" (click)="ir('captura')">Receber checklist</button>
+      </div>
+    } @else {
+      <div class="diagnostico__grade">
+        <div class="diagnostico__coluna">
+          <ul class="lista">
+            @for (canal of canais; track canal.id) {
+              <li>
+                <button
+                  type="button"
+                  class="sinal"
+                  role="checkbox"
+                  [attr.aria-checked]="funil.marcado(canal.id)"
+                  [class.sinal--marcado]="funil.marcado(canal.id)"
+                  [style.--cor]="canal.cor"
+                  (click)="alternar(canal.id)"
+                >
+                  <span class="sinal__canal">
+                    <span class="sinal__ponto"></span>
+                    <span class="sinal__nome">{{ canal.nome }}</span>
+                  </span>
+                  <span class="sinal__pergunta">{{ canal.pergunta }}</span>
+                  <span class="sinal__caixa" aria-hidden="true">
+                    <svg viewBox="0 0 16 16"><path d="M2 8.5 6 12.5 14 4" /></svg>
+                  </span>
+                </button>
+              </li>
+            }
+          </ul>
+
+          <div class="resultado" id="resultado" [class.resultado--vazio]="!funil.comecouDiagnostico()">
+            @if (funil.comecouDiagnostico()) {
+              <p class="rotulo">Seu resultado</p>
+
+              @if (funil.alerta()) {
+                <h3>
+                  Você marcou {{ funil.total() }} sinais. Seu escritório já não acompanha a empresa
+                  que ele abriga.
+                </h3>
+                <p class="conduz">
+                  Um ambiente fora de compasso cobra o preço em produtividade, colaboração,
+                  experiência das equipes e percepção de valor da sua marca. Cada sinal marcado tem
+                  solução de projeto.
+                </p>
+              } @else {
+                <h3>
+                  Você marcou {{ funil.total() }} de 10 sinais. Seu escritório está inteiro na maior
+                  parte dos canais.
+                </h3>
+                <p class="conduz">
+                  Vale olhar o que foi marcado: costumam ser justamente os pontos que a equipe mais
+                  sente no dia a dia. A partir de três sinais, o ambiente já começa a atrapalhar a
+                  operação.
+                </p>
+              }
+
+              <div class="resultado__mapa">
+                <app-mapa-sensorial />
+              </div>
+
+              <div class="entrega">
+                <p class="rotulo rotulo--claro">Leve o resultado com você</p>
+                <div class="entrega__botoes">
+                  <button
+                    type="button"
+                    class="botao botao--menta"
+                    [disabled]="ocupado()"
+                    (click)="enviarPdf()"
+                  >
+                    {{ entrega.estado() === 'enviando' ? 'Enviando…' : 'Receber PDF por e-mail' }}
+                  </button>
+                  <button
+                    type="button"
+                    class="botao botao--contorno"
+                    [disabled]="ocupado()"
+                    (click)="baixarPdf()"
+                  >
+                    {{ entrega.estado() === 'gerando' ? 'Gerando…' : 'Baixar o PDF' }}
+                  </button>
+                </div>
+                @if (entrega.aviso(); as aviso) {
+                  <p
+                    class="entrega__aviso"
+                    [class.entrega__aviso--erro]="entrega.estado() === 'erro'"
+                    role="status"
+                  >
+                    {{ aviso }}
+                  </p>
+                }
+              </div>
+
+              <div class="resultado__acao">
+                <a class="botao botao--coral" [href]="link()" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.21-8.24 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.21.89 2.39 1.01 2.55.12.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.28Z"
+                    />
+                  </svg>
+                  Conversar com a Sentir
+                </a>
+                <button type="button" class="resultado__refazer" (click)="funil.reiniciarDiagnostico()">
+                  Refazer checklist
+                </button>
+              </div>
+            } @else {
+              <p class="resultado__espera">
+                Marque os sinais acima para ver o corte sensorial do seu escritório.
+              </p>
+            }
+          </div>
+        </div>
+
+        <aside class="diagnostico__lateral">
+          <app-mapa-sensorial />
+        </aside>
+      </div>
+    }
+  </div>
+</section>

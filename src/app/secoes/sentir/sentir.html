@@ -1,0 +1,34 @@
+<section class="secao secao--escura" id="sentir">
+  <div class="secao__interno sentir">
+    <div class="sentir__texto" appRevelar>
+      <p class="rotulo rotulo--claro">A Sentir Arquitetura</p>
+      <h2>O ambiente da sua empresa também faz parte da sua <span class="grifo grifo--claro">estratégia</span>.</h2>
+      <p class="conduz conduz--claro">
+        A Sentir cria ambientes corporativos mais eficientes, humanos e preparados para o futuro
+        da sua empresa.
+      </p>
+      <p class="sentir__metodo">
+        Método: Neuroarquitetura aplicada ao corporativo — projetamos a partir de como as pessoas
+        percebem o espaço, canal por canal, e não a partir do gosto de quem assina o projeto.
+      </p>
+    </div>
+
+    <figure class="sentir__foto" appRevelar="120">
+      @if (semFoto()) {
+        <div class="moldura">
+          <p class="rotulo rotulo--claro">
+            Coloque uma foto real de projeto em<br />public/imagens/projeto-sentir.jpg
+          </p>
+        </div>
+      } @else {
+        <img
+          src="imagens/projeto-sentir.jpg"
+          alt="Ambiente corporativo projetado pela Sentir Arquitetura"
+          loading="lazy"
+          decoding="async"
+          (error)="semFoto.set(true)"
+        />
+      }
+    </figure>
+  </div>
+</section>

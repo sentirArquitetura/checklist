@@ -1,0 +1,80 @@
+.mapa {
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+}
+
+.mapa__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--linha);
+}
+
+.mapa__contagem {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--tinta-suave);
+}
+
+.mapa__contagem strong {
+  font-size: 1.05rem;
+  color: var(--tinta);
+}
+
+.mapa__lista {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.mapa__faixa {
+  display: grid;
+  grid-template-columns: 4.9rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mapa__nome {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  transition: color 0.3s var(--curva);
+}
+
+.mapa__faixa--ativa .mapa__nome {
+  color: var(--tinta);
+}
+
+.mapa__trilho {
+  display: block;
+  height: 0.6rem;
+  background: rgba(46, 44, 47, 0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.mapa__preenchimento {
+  display: block;
+  height: 100%;
+  width: 8%;
+  background: rgba(46, 44, 47, 0.14);
+  border-radius: 2px;
+  transition:
+    width 0.55s var(--curva),
+    background-color 0.35s var(--curva);
+}
+
+.mapa__faixa--ativa .mapa__preenchimento {
+  width: 100%;
+  background: var(--cor);
+}
