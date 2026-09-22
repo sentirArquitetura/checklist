@@ -23,10 +23,10 @@ export class Captura {
 
   protected readonly formulario = this.fb.nonNullable.group({
     nome: ['', [Validators.required, Validators.minLength(2)]],
-    empresa: ['', Validators.required],
-    cargo: ['', Validators.required],
+    empresa: ['', ],
+    cargo: ['', ],
     whatsapp: ['', [Validators.required, Validators.pattern(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/)]],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', ],
   });
 
   /** Mostra o erro só depois que o campo foi tocado ou o envio foi tentado. */
