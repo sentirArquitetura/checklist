@@ -16,24 +16,17 @@ export const SENTIR = {
   email: 'fernanda@sentirarquitetura.com.br',
 
   /**
-   * Endpoint que recebe os leads (Formspree, n8n, Make, Apps Script, API própria).
-   * Deixe em branco para gravar apenas no navegador enquanto testa.
+   * URL do app da web do Google Apps Script que grava os checklists na planilha
+   * (termina em /exec). O script está em servidor/planilha.gs e o passo a passo
+   * no README. Em branco: os dados ficam só no navegador do visitante.
    */
   endpointLeads: '',
-
-  /**
-   * Endpoint que recebe o PDF e dispara o e-mail para o visitante.
-   * Recebe { lead, resultado, pdfBase64, nomeArquivo }.
-   * Veja o exemplo pronto de Cloudflare Worker no README.
-   * Em branco: o botão de e-mail avisa que o envio ainda não foi configurado.
-   */
-  endpointEnvio: '',
 } as const;
 
-/** Monta o link do WhatsApp, opcionalmente com o resultado do checklist. */
+/** Monta o link do WhatsApp, opcionalmente com os dados e o resultado do checklist. */
 export function linkWhatsapp(complemento?: string): string {
   const texto = complemento
-    ? `${SENTIR.mensagemWhatsapp} ${complemento}`
+    ? `${SENTIR.mensagemWhatsapp}\n\n${complemento}`
     : SENTIR.mensagemWhatsapp;
   return `https://wa.me/${SENTIR.whatsapp}?text=${encodeURIComponent(texto)}`;
 }

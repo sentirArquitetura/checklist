@@ -26,7 +26,8 @@ export class Captura {
     empresa: ['', ],
     cargo: ['', ],
     whatsapp: ['', [Validators.required, Validators.pattern(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/)]],
-    email: ['', ],
+    /** Opcional: vazio passa, mas se preenchido precisa ser um e-mail válido. */
+    email: ['', Validators.email],
   });
 
   /** Mostra o erro só depois que o campo foi tocado ou o envio foi tentado. */
@@ -54,7 +55,7 @@ export class Captura {
     alvo.value = texto;
   }
 
-  protected async enviar(): Promise<void> {
+  protected enviar(): void {
     this.tentouEnviar.set(true);
 
     if (this.formulario.invalid) {
@@ -64,10 +65,8 @@ export class Captura {
       return;
     }
 
-    const ok = await this.funil.registrar(this.formulario.getRawValue());
-    if (ok) {
-      setTimeout(() => rolarPara('diagnostico'), 120);
-    }
+    this.funil.registrar(this.formulario.getRawValue());
+    setTimeout(() => rolarPara('diagnostico'), 120);
   }
 
   protected ir(id: string): void {

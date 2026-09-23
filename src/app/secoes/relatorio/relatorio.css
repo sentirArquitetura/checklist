@@ -1,0 +1,201 @@
+.relatorio {
+  max-width: 46rem;
+}
+
+.relatorio__abertura h2 {
+  margin-top: 1.1rem;
+}
+
+.relatorio__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.relatorio__nota {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+  max-width: 52ch;
+}
+
+.relatorio__aviso {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.relatorio__aviso--erro {
+  color: var(--coral-forte);
+}
+
+/* --- A folha: mesma diagramação do PDF ----------------------------------
+   Helvetica, as mesmas cores e a mesma ordem de blocos do arquivo gerado
+   em core/checklist-pdf.ts. Mudou lá, muda aqui.
+   -------------------------------------------------------------------------- */
+
+.folha {
+  --folha-tinta: #2e2b2e;
+  --folha-suave: #6b6669;
+  --folha-traco: #ded9d9;
+
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  padding: clamp(1.5rem, 8.7%, 3.25rem);
+  background: #fff;
+  color: var(--folha-tinta);
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  border-radius: 3px;
+  box-shadow:
+    0 1px 2px rgba(46, 44, 47, 0.06),
+    0 12px 32px -12px rgba(46, 44, 47, 0.18);
+}
+
+.folha__faixa {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+}
+
+.folha__faixa span {
+  height: 6px;
+}
+
+.folha__faixa--apagada {
+  opacity: 0.28;
+}
+
+.folha__logo {
+  width: 118px;
+  height: auto;
+  margin-top: 1.75rem;
+}
+
+.folha__titulo {
+  margin-top: 1.6rem;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 0.9rem + 1vw, 1.45rem);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.folha__quem {
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  color: var(--folha-suave);
+  overflow-wrap: anywhere;
+}
+
+.folha__data {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--folha-suave);
+}
+
+.folha__traco {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid var(--folha-traco);
+}
+
+.folha__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.folha__sinal {
+  display: grid;
+  grid-template-columns: 11px 5.2rem minmax(0, 1fr);
+  column-gap: 0.85rem;
+  align-items: start;
+}
+
+.folha__caixa {
+  display: grid;
+  place-items: center;
+  width: 11px;
+  height: 11px;
+  margin-top: 0.15rem;
+  border: 1px solid var(--folha-traco);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+}
+
+.folha__sinal--marcado .folha__caixa {
+  background: var(--cor);
+  border-color: var(--cor);
+}
+
+.folha__canal {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--folha-suave);
+}
+
+.folha__sinal--marcado .folha__canal {
+  color: var(--folha-tinta);
+}
+
+.folha__pergunta {
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 480px) {
+  .folha__sinal {
+    grid-template-columns: 11px minmax(0, 1fr);
+    row-gap: 0.2rem;
+  }
+
+  .folha__pergunta {
+    grid-column: 2;
+  }
+}
+
+.folha__resultado {
+  padding: 1.25rem 1.25rem 1.25rem 1.35rem;
+  background: rgba(137, 196, 196, 0.22);
+  border-left: 4px solid var(--menta);
+}
+
+.folha__resultado--alerta {
+  background: rgba(245, 148, 148, 0.22);
+  border-left-color: var(--coral);
+}
+
+.folha__total {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.folha__veredito {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--folha-suave);
+}
+
+.folha__convite {
+  margin-top: 1.6rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.folha__contato {
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  color: var(--folha-suave);
+}

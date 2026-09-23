@@ -4,8 +4,8 @@
       <p class="rotulo">Etapa 1 de 2 · Seus dados</p>
       <h2>Receba gratuitamente o checklist completo</h2>
       <p class="conduz">
-        Preencha para abrir as dez perguntas. Usamos seus dados para enviar o material e falar
-        sobre projetos corporativos — nada além disso.
+        Preencha para abrir as dez perguntas. Usamos seus dados só para falar sobre projetos
+        corporativos — nada além disso.
       </p>
     </header>
 
@@ -58,7 +58,7 @@
         </div>
 
         <div class="campo campo--largo">
-          <label for="email">E-mail</label>
+          <label for="email">E-mail <span class="campo__opcional">(opcional)</span></label>
           <input id="email" type="email" formControlName="email" autocomplete="email" />
           @if (invalido('email')) {
             <p class="campo__erro">Informe um e-mail válido, como nome&#64;empresa.com.br.</p>
@@ -66,15 +66,11 @@
         </div>
 
         <div class="formulario__rodape">
-          <button type="submit" class="botao botao--coral botao--largo" [disabled]="funil.enviando()">
-            {{ funil.enviando() ? 'Enviando…' : 'Acessar checklist' }}
-          </button>
+          <button type="submit" class="botao botao--coral botao--largo">Acessar checklist</button>
           <p class="formulario__aviso">
-            Seus dados ficam com a Sentir Arquitetura. Nada de disparo em massa.
+            Seus dados e o resultado do checklist ficam registrados com a Sentir Arquitetura.
+            Nada de disparo em massa.
           </p>
-          @if (funil.erroEnvio(); as erro) {
-            <p class="formulario__falha" role="alert">{{ erro }}</p>
-          }
         </div>
       </form>
     }

@@ -17,6 +17,29 @@ const TINTA = { r: 0.18, g: 0.17, b: 0.18 };
 const SUAVE = { r: 0.42, g: 0.4, b: 0.41 };
 const TRACO = { r: 0.87, g: 0.85, b: 0.85 };
 
+/** Linha de identificação: nome, WhatsApp e, se houver, e-mail. */
+export function identificacao(lead: Lead): string {
+  return [lead.nome, lead.empresa, lead.cargo, lead.whatsapp, lead.email]
+    .map((parte) => parte?.trim())
+    .filter(Boolean)
+    .join(' · ');
+}
+
+/** Veredito do resultado, já quebrado nas linhas do PDF. */
+export function veredito(alerta: boolean): string[] {
+  return alerta
+    ? [
+        'Seu escritório apresenta sinais de que já não acompanha as necessidades',
+        'atuais da empresa. Um ambiente inadequado impacta produtividade,',
+        'colaboração, experiência das equipes e percepção de valor da marca.',
+      ]
+    : [
+        'Seu escritório está inteiro na maior parte dos canais. Vale olhar o que foi',
+        'marcado: costumam ser os pontos que a equipe mais sente no dia a dia.',
+        'A partir de três sinais, o ambiente já começa a atrapalhar a operação.',
+      ];
+}
+
 /** Converte '#F2B441' para o formato de cor do pdf-lib. */
 function hex(valor: string) {
   return {
@@ -100,8 +123,13 @@ export class ChecklistPdf {
 
     // --- Identificação ------------------------------------------------------
     const { lead } = resultado;
-    const identificacao = `${lead.nome} · ${lead.empresa} · ${lead.cargo}`;
-    pagina.drawText(identificacao, { x: margem, y, size: 10, font: regular, color: cor(SUAVE) });
+    pagina.drawText(identificacao(lead), {
+      x: margem,
+      y,
+      size: 10,
+      font: regular,
+      color: cor(SUAVE),
+    });
     y -= 14;
     pagina.drawText(
       `Respondido em ${new Date(lead.enviadoEm).toLocaleDateString('pt-BR')}`,
@@ -158,20 +186,8 @@ export class ChecklistPdf {
       color: cor(TINTA),
     });
 
-    const veredito = resultado.alerta
-      ? [
-          'Seu escritório apresenta sinais de que já não acompanha as necessidades',
-          'atuais da empresa. Um ambiente inadequado impacta produtividade,',
-          'colaboração, experiência das equipes e percepção de valor da marca.',
-        ]
-      : [
-          'Seu escritório está inteiro na maior parte dos canais. Vale olhar o que foi',
-          'marcado: costumam ser os pontos que a equipe mais sente no dia a dia.',
-          'A partir de três sinais, o ambiente já começa a atrapalhar a operação.',
-        ];
-
     let yv = y - 44;
-    for (const linha of veredito) {
+    for (const linha of veredito(resultado.alerta)) {
       pagina.drawText(linha, {
         x: margem + 18,
         y: yv,
@@ -286,12 +302,12 @@ export class ChecklistPdf {
 
   /** Nome do arquivo baixado. */
   nomeArquivo(lead: Lead): string {
-    const empresa = lead.empresa
+    const quem = (lead.empresa || lead.nome || '')
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-zA-Z0-9]+/g, '-')
       .replace(/^-|-$/g, '')
       .toLowerCase();
-    return `checklist-sentir-${empresa || 'empresa'}.pdf`;
+    return `checklist-sentir-${quem || 'resultado'}.pdf`;
   }
 }

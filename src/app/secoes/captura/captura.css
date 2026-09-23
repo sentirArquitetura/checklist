@@ -69,6 +69,12 @@
   color: var(--tinta-suave);
 }
 
+.campo__opcional {
+  letter-spacing: 0.06em;
+  text-transform: none;
+  opacity: 0.8;
+}
+
 .campo input {
   width: 100%;
   min-height: 3.25rem;
@@ -109,9 +115,3 @@
   text-align: center;
 }
 
-.formulario__falha {
-  margin-top: 0.75rem;
-  font-size: 0.88rem;
-  color: var(--coral-forte);
-  text-align: center;
-}

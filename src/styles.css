@@ -234,6 +234,11 @@ p {
   --frente: var(--carvao);
 }
 
+.botao--menta-clara {
+  --fundo: var(--menta-clara);
+  --frente: var(--carvao);
+}
+
 .botao--contorno {
   --fundo: transparent;
   --frente: currentColor;

@@ -7,7 +7,6 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { linkWhatsapp } from '../../core/config';
 import { Funil } from '../../core/funil';
 import { rolarPara } from '../../core/rolar';
 
@@ -36,9 +35,7 @@ export class BarraAcao implements OnDestroy {
       !this.chegouNoFim(),
   );
 
-  protected readonly link = computed(() =>
-    linkWhatsapp(`Marquei ${this.funil.total()} de 10 sinais no checklist.`),
-  );
+  protected readonly link = this.funil.linkConversa;
 
   private aoRolar = () => {};
 
