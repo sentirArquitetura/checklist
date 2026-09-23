@@ -20,7 +20,7 @@ export const SENTIR = {
    * (termina em /exec). O script está em servidor/planilha.gs e o passo a passo
    * no README. Em branco: os dados ficam só no navegador do visitante.
    */
-  endpointLeads: '',
+  endpointLeads: 'https://script.google.com/macros/s/AKfycbzM6tCkzuPVqqnlDZY2Ju4L-xJ0UhNEVN3REpjyJBo4ovM_IuIgh-K_WEIOP6hXD6YEng/exec',
 } as const;
 
 /** Monta o link do WhatsApp, opcionalmente com os dados e o resultado do checklist. */
