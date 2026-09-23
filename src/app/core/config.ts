@@ -20,7 +20,7 @@ export const SENTIR = {
    * (termina em /exec). O script está em servidor/planilha.gs e o passo a passo
    * no README. Em branco: os dados ficam só no navegador do visitante.
    */
-  endpointLeads: 'https://script.google.com/macros/s/AKfycbymQl2ZuuNpA3UBYgao7rMfMrHXfQ_dqmbhXpi3MzwMrzAPOLDD0kMFdSwGrC2YvdOAPw/exec',
+  endpointLeads: 'https://script.google.com/macros/s/AKfycbymQl2ZuuNpA3UBYgao7rMfMrHXfQ_dqmbhXpi3MzwMrzAPOLDD0kMFdSwGrC2YvdOAPw/exec', 
                     
 } as const;
 
